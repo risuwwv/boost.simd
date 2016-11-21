@@ -18,6 +18,7 @@
 #include <boost/simd/detail/nsm.hpp>
 #include <boost/simd/detail/dispatch/detail/declval.hpp>
 #include <boost/simd/detail/pack_traits.hpp>
+#include <boost/simd/detail/mask.hpp>
 #include <boost/simd/detail/storage_of.hpp>
 #include <boost/simd/meta/is_power_of_2.hpp>
 #include <boost/simd/meta/is_iterator.hpp>
@@ -240,6 +241,18 @@ namespace boost { namespace simd
       @overload
     */
     BOOST_FORCEINLINE storage_type const& storage() const BOOST_NOEXCEPT { return data_; }
+
+    template<typename Cond>
+    BOOST_FORCEINLINE masked<pack const,pack<Cond,N>> operator()(pack<Cond,N> const& c) const
+    {
+      return {*this, c};
+    }
+
+    template<typename Cond>
+    BOOST_FORCEINLINE masked<pack,pack<Cond,N>> operator()(pack<Cond,N> const& c)
+    {
+      return {*this, c};
+    }
 
     /*!
       @brief Random-access to the pack elements

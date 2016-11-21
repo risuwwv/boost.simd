@@ -14,6 +14,7 @@ set ( SOURCES
       hierarchy.cpp
       iterators.cpp
       assignment.cpp
+      masked_pack.cpp
     )
 
 make_unit( "api.pack" ${SOURCES})
