@@ -64,6 +64,9 @@ set(NS_CMAKE_PROJECT_OPTIONS
 
 if (DEFINED DEV)
   NS_project_include(stf)
+
+  set(NS_BENCH_GIT_TAG "develop")
+  NS_project_include(ns.bench)
 endif()
 
 ## Extension point for CMake
@@ -120,6 +123,7 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/test
   ${PROJECT_SOURCE_DIR}/bench
   ${PROJECT_SOURCE_DIR}/exhaustive
+  ${NS_BENCH_DESTINATION}/include/
   ${STF_DESTINATION}/include/
   ${Boost_INCLUDE_DIRS}
 )
